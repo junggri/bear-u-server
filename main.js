@@ -1,12 +1,14 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const conn = require("./core/database");
+// const conn = require("./core/database");
 
-const app = express();
-app.use(bodyParser.json()).use(bodyParser.urlencoded({ extended: true }));
+const app = express()
+    .use(bodyParser.json()).use(bodyParser.urlencoded({ extended: true }))
+    .use(express.static(__dirname + '/public'));
+
 
 app.get("/", function (request, response) {
-  response.json("hello world");
+  response.render("index.html");
 });
 
 app.post("/create", function (request, response) {});
